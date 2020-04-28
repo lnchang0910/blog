@@ -1,3 +1,11 @@
+# 開發文件
+1. 用git下載
+2. 建立自己的`.env`檔案、修改資料庫連線配置
+3. 生成新的key `php artisan key:generate`
+4. 清除cache `php artisan config:clear`
+5. 建立基本資料 `php artisan admin:install`
+
+
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">
