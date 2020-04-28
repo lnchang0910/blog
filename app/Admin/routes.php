@@ -13,5 +13,5 @@ Route::group([
    $router->get('/', 'HomeController@index')->name('admin.home');
    $router->resource('areas', AreaController::class);
    $router->resource('stations', StationController::class);
-
+   $router->resource('news', NewsController::class);
 });
