@@ -5,6 +5,113 @@
 4. 清除cache `php artisan config:clear`
 5. 建立基本資料 `php artisan admin:install`
 
+## 增加api controller
+```
+php artisan make:controller api\StationController
+```
+
+## laravel-admin 相關
+1. 建立模型
+php artisan make:model Models/Category
+2. 建立遷移檔案
+php artisan make:migration create_categories_table
+3. 建立填充檔案
+php artisan make:seeder CategoriesSeeder
+3. 先做MIGRATE後面跑的第四步驟就會自動填入欄位
+php artisan migrate
+4. 建立後端控制器
+php artisan admin:make CategoryController --model=App\Models\Category
+5. 建立後端路由
+app/admin/routes.php ： $router->resource('/web/categories',CategoryController::class);
+6. 新增後端選單
+/web/categories：選單路徑
+7. 其他定義及編輯定製
+
+## 增加admin列表
+```
+php artisan admin:make StationController --model=App\Station
+```
+
+## laravel migration rollback
+```
+php artisan migrate:rollback
+```
+
+## 加入ekeditor(https://github.com/laravel-admin-extensions/ckeditor)
+```
+composer require laravel-admin-ext/ckeditor
+```
+
+## 配置config(config\admin.php)
+```
+'extensions' => [
+    'ckeditor' => [
+    
+        //Set to false if you want to disable this extension
+        'enable' => true,
+        
+        // Editor configuration
+        'config' => [
+            'lang'   => 'zh-TW',
+            'height' => 500,
+        ],
+    ],
+],
+```
+
+## 加入laravel-filemanager()
+做完整套的安裝
+https://unisharp.github.io/laravel-filemanager/installation
+就可以開始串接
+https://unisharp.github.io/laravel-filemanager/integration
+過程參考
+https://bonze.tw/laravel-ckeditor-with-laravel-file-manager/
+
+### 記得做publish
+```
+php artisan vendor:publish --tag=lfm_config
+php artisan vendor:publish --tag=lfm_public
+```
+
+### Create symbolic link
+```
+php artisan storage:link
+```
+
+### 需另外安裝helper(laravel/helpers)
+```
+composer require laravel/helpers
+```
+
+### 更改config\lfm.php
+```
+'middlewares' => ['web', 'auth'],
+'url_prefix' => 'laravel-filemanager',
+
+// 我們換成
+
+'middlewares' => ['web', 'admin'],
+'url_prefix' => '/admin/laravel-filemanager',
+```
+
+### 更改config\admin.php(extensions.ckeditor.config)
+```
+filebrowserImageBrowseUrl: '/admin/laravel-filemanager?type=Images',
+filebrowserImageUploadUrl: '/admin/laravel-filemanager/upload?type=Images',
+filebrowserBrowseUrl: '/admin/laravel-filemanager?type=Files',
+filebrowserUploadUrl: '/admin/laravel-filemanager/upload?type=Files'
+```
+
+### 關掉多個USER使用
+```
+// If true, private folders will be created for each signed-in user.
+'allow_multi_user' => false,
+// If true, share folder will be created when allow_multi_user is true.
+'allow_share_folder' => false,
+```
+
+### ckeditor目前是標準版，若需要更多功能則需要去官網下載完整版，並將zip檔的內容置換到指定目錄(vendor...)(尚未解決)
+https://ckeditor.com/ckeditor-4/download/
 
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
