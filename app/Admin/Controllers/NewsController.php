@@ -3,6 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Models\News;
+use App\Admin\Models\Station;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -29,7 +30,7 @@ class NewsController extends AdminController
         $grid = new Grid(new News());
 
         $grid->column('id', trans('ID'));
-        $grid->column('station_id', trans('admin.news.station_id'));
+        $grid->column('station.station_name', trans('admin.news.station_name'));
         $grid->column('news_type', trans('admin.news.news_type'));
         $grid->column('news_title',trans('admin.news.news_title'));
         $grid->column('order',trans('admin.news.order'));
@@ -51,8 +52,18 @@ class NewsController extends AdminController
         $show = new Show(News::findOrFail($id));
 
         $show->field('id', __('ID'));
-        $show->field('station_id', trans('admin.news.station_id'));
-        $show->field('news_type', trans('admin.news.news_type'));
+        $show->station_id(trans('admin.news.station_name'))->as(function ($station_id) {
+            return Station::where('id', $station_id)->first()->station_name ?? null;
+        });
+
+        $show->field('news_type', trans('admin.news.news_type'))->as(function($news_type){
+            $newsTypes = [
+                0 => trans('admin.news.newsType.announcement'),
+                1 => trans('admin.news.newsType.activity'),
+            ];
+            return $newsTypes[0] ?? null;
+        });
+
         $show->field('news_title', trans('admin.news.news_title'));
         $show->field('news_excerpt', trans('admin.news.news_excerpt'));
         $show->field('news_content', trans('admin.news.news_content'));
@@ -61,7 +72,7 @@ class NewsController extends AdminController
         $show->field('news_dept', trans('admin.news.news_dept'));
         $show->field('news_cate', trans('admin.news.news_cate'));
         $show->field('news_remark', trans('admin.news.news_remark'));
-        $show->field('news_image', trans('admin.news.news_image'));
+        $show->field('news_image', trans('admin.news.news_image'))->image();
         $show->field('on_main_page', trans('admin.news.on_main_page'));
         $show->field('on_index', trans('admin.news.on_index'));
         $show->field('order', trans('admin.news.order'));
@@ -87,9 +98,9 @@ class NewsController extends AdminController
             1 => trans('admin.news.newsType.activity'),
         ];
 
-        $form->text('station_id', trans('admin.news.station_id'));
-        $form->select('news_type', trans('admin.news.news_type'))->options($newsTypes);
-        $form->text('news_title', trans('admin.news.news_title'));
+        $form->select('station_id', trans('admin.news.station_id'))->options(Station::all()->pluck('station_name', 'id'))->rules('required');
+        $form->select('news_type', trans('admin.news.news_type'))->options($newsTypes)->rules('required');
+        $form->text('news_title', trans('admin.news.news_title'))->rules('required');
         $form->ckeditor('news_excerpt', trans('admin.news.news_excerpt'));
         $form->ckeditor('news_content', trans('admin.news.news_content'));
         $form->text('news_date', trans('admin.news.news_date'));

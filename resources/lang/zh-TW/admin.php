@@ -104,6 +104,7 @@ return [
     'quick_create'           => '快速創建',
     'news' => [
         'station_id' => '測站代號',
+        'station_name' => '測站',
         'news_type' => '訊息類別',
         'news_title' => '訊息標題',
         'news_excerpt' => '列表頁摘要',
