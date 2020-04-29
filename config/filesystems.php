@@ -64,14 +64,15 @@ return [
             'url' => env('AWS_URL'),
             'endpoint' => env('AWS_ENDPOINT'),
         ],
-         //åƒè€ƒ http://carlislebear.blogspot.com/2018/10/laravel-admin-experiences.html
+         //°Ñ¦Ò http://carlislebear.blogspot.com/2018/10/laravel-admin-experiences.html
          'admin' => [
             'driver' => 'local',
             'root' => public_path('uploads'),
             'visibility' => 'public',
-            'url' => env('APP_URL').'/uploads', // è¦æ”¹.envçš„ APP_URLä¸ºæ­£ç¡®è®¿é—®çš„ç½‘å€
-            //'url' => admin_asset('uploads'), // é¿å…{{ Admin::user()->avatar }}ç ´åœ–
+            'url' => env('APP_URL').'/uploads', // ­n§ï.envªº APP_URL?¥¿ÚÌ??ªºÊI§}
+            //'url' => admin_asset('uploads'), // Á×§K{{ Admin::user()->avatar }}¯}¹Ï
          ],
+
     ],
 
     /*
