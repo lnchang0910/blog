@@ -72,7 +72,7 @@ class NewsController extends AdminController
 
         $show->field('news_title', trans('admin.news.news_title'));
         $show->field('news_excerpt', trans('admin.news.news_excerpt'));
-        $show->field('news_content', trans('admin.news.news_content'));
+        $show->field('news_content', trans('admin.news.news_content'))->unescape();
         $show->field('news_date', trans('admin.news.news_date'));
         $show->field('news_location', trans('admin.news.news_location'));
         $show->field('news_dept', trans('admin.news.news_dept'));
@@ -107,13 +107,13 @@ class NewsController extends AdminController
         $form->select('station_id', trans('admin.news.station_id'))->options(Station::all()->pluck('station_name', 'id'))->rules('required');
         $form->select('news_type', trans('admin.news.news_type'))->options($newsTypes)->rules('required');
         $form->text('news_title', trans('admin.news.news_title'))->rules('required');
-        $form->ckeditor('news_excerpt', trans('admin.news.news_excerpt'));
+        $form->textarea('news_excerpt', trans('admin.news.news_excerpt'));
         $form->ckeditor('news_content', trans('admin.news.news_content'));
         $form->text('news_date', trans('admin.news.news_date'));
         $form->text('news_location', trans('admin.news.news_location'));
         $form->text('news_dept', trans('admin.news.news_dept'));
         $form->text('news_cate',trans('admin.news.news_cate'));
-        $form->ckeditor('news_remark', trans('admin.news.news_remark'));
+        $form->textarea('news_remark', trans('admin.news.news_remark'));
         // $form->text('news_image', trans('admin.news.news_image'));
         $form->image('news_image', trans('admin.news.news_image'))->move('images/news')->name(function($file){
             $fileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
