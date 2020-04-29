@@ -31,7 +31,13 @@ class NewsController extends AdminController
 
         $grid->column('id', trans('ID'));
         $grid->column('station.station_name', trans('admin.news.station_name'));
-        $grid->column('news_type', trans('admin.news.news_type'));
+        $grid->column('news_type', trans('admin.news.news_type'))->display(function($news_type){
+            $newsTypes = [
+                0 => trans('admin.news.newsType.announcement'),
+                1 => trans('admin.news.newsType.activity'),
+            ];
+            return $newsTypes[$news_type] ?? null;
+        });
         $grid->column('news_title',trans('admin.news.news_title'));
         $grid->column('order',trans('admin.news.order'));
         $grid->column('valid_at', trans('admin.news.valid_at'));
@@ -61,7 +67,7 @@ class NewsController extends AdminController
                 0 => trans('admin.news.newsType.announcement'),
                 1 => trans('admin.news.newsType.activity'),
             ];
-            return $newsTypes[0] ?? null;
+            return $newsTypes[$news_type] ?? null;
         });
 
         $show->field('news_title', trans('admin.news.news_title'));
