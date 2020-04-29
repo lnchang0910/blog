@@ -102,4 +102,29 @@ return [
     'prev'                   => '上一步',
     'next'                   => '下一步',
     'quick_create'           => '快速創建',
+    'news' => [
+        'station_id' => '測站代號',
+        'station_name' => '測站',
+        'news_type' => '訊息類別',
+        'news_title' => '訊息標題',
+        'news_excerpt' => '列表頁摘要',
+        'news_content' => '訊息內容',
+        'news_date' => '起訖日期',
+        'news_location' => '活動地點',
+        'news_dept' => '主辦單位',
+        'news_cate' => '活動類別',
+        'news_remark' => '備註',
+        'news_image' => '圖片',
+        'on_main_page' => '全站首頁顯示',
+        'on_index' => '測站首頁顯示',
+        'order' => '排序',
+        'valid_at' => '有效日期',
+        'mod_user' => '異動人員',
+        'created_at' => '建立時間',
+        'updated_at' => '異動時間',
+        'newsType' => [
+            'announcement' => '訊息公告',
+            'activity' => '活動'
+        ]
+    ]
 ];
