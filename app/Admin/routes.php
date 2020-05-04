@@ -14,4 +14,6 @@ Route::group([
    $router->resource('areas', AreaController::class);
    $router->resource('stations', StationController::class);
    $router->resource('news', NewsController::class);
+   $router->resource('sceneries', SceneryController::class);
+   $router->resource('scene-images', SceneImageController::class);
 });
