@@ -10,6 +10,6 @@ class Scenery extends Model
 
     public function station()
     {
-        return $this->belongsto(Station::class, 'station_code', 'id');
+        return $this->belongsto(Station::class, 'station_id', 'id');
     }
 }

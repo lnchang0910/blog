@@ -38,7 +38,7 @@ class SceneImageController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new SceneImage());
-        $station_code = Admin::user()->station_id;
+        $station_id = Admin::user()->station_id;
         $username = Admin::user()->username;
 
         $grid->column('station.station_name', __('測站名稱'));
@@ -51,7 +51,7 @@ class SceneImageController extends AdminController
         $grid->column('updated_at', __('異動時間'));
 
         if($username != 'admin'){
-            $grid->model()->where('station_code', '=', $station_code);
+            $grid->model()->where('station_id', '=', $station_id);
         }
 
         return $grid;
@@ -69,8 +69,8 @@ class SceneImageController extends AdminController
 
         $show->field('id', __('Id'));
 
-        $show->station_code('測站名稱')->as(function ($station_code) {
-         return Station::where('id', $station_code)->first()->station_name ?? null;
+        $show->field('station_id', __('測站名稱'))->as(function ($station_id) {
+         return Station::where('id', $station_id)->first()->station_name ?? null;
         });
 
         $show->field('image', __('景點圖'))->image();
@@ -91,13 +91,12 @@ class SceneImageController extends AdminController
     protected function form()
     {
         $form = new Form(new SceneImage());
-        $station_code = Admin::user()->station_id;
+        $station_id = Admin::user()->station_id;
 
-        $station_code = Admin::user()->station_id;
-        $form->select('station_code', __('測站名稱'))->options(Station::all()->pluck('station_name', 'id'))->default($station_code)->readonly();
+        $form->select('station_id', __('測站名稱'))->options(Station::all()->pluck('station_name', 'id'))->default($station_id)->readonly();
         //$form->select('station_code', __('測站名稱'))->options(Station::where('id', $station_code)->pluck('station_name', 'id'));
         //$form->text('station_code', __('測站代號'))->default(Admin::user()->station_id)->readonly();
-        $form->select('scn_id', __('景點編號'))->options(Scenery::where('station_code', $station_code)->pluck('scn_id', 'scn_id'))->rules('required');
+        $form->select('scn_id', __('景點編號'))->options(Scenery::where('station_id', $station_id)->pluck('scn_id', 'scn_id'))->rules('required');
         $form->image('image', __('景點圖'))->help('圖片尺寸：2297*1583')->rules('required');
         $form->text('order', __('排序'));
         $form->datetime('valid_at', __('有效日期'))->default(date('Y-m-d H:i:s'));

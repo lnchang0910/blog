@@ -38,7 +38,7 @@ class SceneryController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new Scenery());
-        $station_code = Admin::user()->station_id;
+        $station_id = Admin::user()->station_id;
         $username = Admin::user()->username;
 
         //$grid->column('id', __('Id'));
@@ -55,7 +55,7 @@ class SceneryController extends AdminController
         $grid->column('updated_at', __('異動時間'));
 
         if($username != 'admin'){
-            $grid->model()->where('station_code', '=', $station_code);
+            $grid->model()->where('station_id', '=', $station_id);
         }
 
         return $grid;
@@ -72,7 +72,7 @@ class SceneryController extends AdminController
         $show = new Show(Scenery::findOrFail($id));
 
         $show->field('id', __('Id'));
-        $show->station_code('測站名稱')->as(function ($station_code) {
+        $show->field('station_id', __('測站名稱'))->as(function ($station_code) {
          return Station::where('id', $station_code)->first()->station_name ?? null;
         });
         //$show->field('station_code', __('測站代號'));
@@ -100,9 +100,9 @@ class SceneryController extends AdminController
     protected function form()
     {
         $form = new Form(new Scenery());
-        $station_code = Admin::user()->station_id;
+        $station_id = Admin::user()->station_id;
 
-        $form->select('station_code', __('測站名稱'))->options(Station::all()->pluck('station_name', 'id'))->default($station_code)->readonly();
+        $form->select('station_code', __('測站名稱'))->options(Station::all()->pluck('station_name', 'id'))->default($station_id)->readonly();
         //$form->text('station_code', __('測站名稱'))->$station_code->readonly();
 
         $form->text('scn_id', __('景點編號'))->rules('required|max:11');

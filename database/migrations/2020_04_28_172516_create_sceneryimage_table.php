@@ -15,7 +15,7 @@ class CreateSceneryimageTable extends Migration
     {
         Schema::create('scenery_image', function (Blueprint $table) {
             $table->id();
-            $table->string('station_code', 4);
+            $table->string('station_id', 4);
             $table->integer('scn_id');
             $table->string('image', 255);
             $table->integer('order');

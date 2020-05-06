@@ -15,7 +15,7 @@ class CreateSceneryTable extends Migration
     {
         Schema::create('scenery', function (Blueprint $table) {
             $table->id();
-            $table->string('station_code', 4);
+            $table->string('station_id', 4);
             $table->integer('scn_id');
             $table->string('scn_title', 30);
             $table->text('scn_excerpt');
