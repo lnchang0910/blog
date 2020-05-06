@@ -44,6 +44,10 @@ class StationViewController extends AdminController
       $grid->column('mod_user', __('異動人員'));
       $grid->column('updated_at', __('異動時間'));
 
+      if (Admin::user()->username != 'admin') {
+         $grid->model()->where('station_id', '=', Admin::user()->station_id);
+      }
+
       return $grid;
    }
 

@@ -25,7 +25,7 @@ class AreaController extends AdminController
       return $content
          ->header('地區')
          ->description('管理')
-         ->breadcrumb(['text'=>'地區管理'])
+         ->breadcrumb(['text' => '地區管理'])
          ->body($this->grid());
    }
    /**

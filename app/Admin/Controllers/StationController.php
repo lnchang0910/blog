@@ -26,7 +26,7 @@ class StationController extends AdminController
       return $content
          ->header('測站')
          ->description('管理')
-         ->breadcrumb(['text'=>'測站管理'])
+         ->breadcrumb(['text' => '測站管理'])
          ->body($this->grid());
    }
 

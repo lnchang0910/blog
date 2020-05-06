@@ -18,4 +18,5 @@ Route::group([
    $router->resource('news', NewsController::class);
    $router->resource('sceneries', SceneryController::class);
    $router->resource('scene-images', SceneImageController::class);
+   //$router->apiResource('post', 'api\QueryModellists');
 });

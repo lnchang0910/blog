@@ -19,7 +19,7 @@ class CreateSceneryTable extends Migration
             $table->integer('scn_id');
             $table->string('scn_title', 30);
             $table->text('scn_excerpt');
-            $table->string('list_image', 30);
+            $table->string('list_image', 255);
             $table->text('scn_content');
             $table->integer('order');
             $table->dateTime('valid_at');
