@@ -73,7 +73,7 @@ class SceneryController extends AdminController
 
         $show->field('id', __('Id'));
         $show->field('station_id', __('測站名稱'))->as(function ($station_code) {
-         return Station::where('id', $station_code)->first()->station_name ?? null;
+         return Station::where('id', $station_id)->first()->station_name ?? null;
         });
         //$show->field('station_code', __('測站代號'));
         $show->field('scn_id', __('景點編號'));
@@ -104,9 +104,9 @@ class SceneryController extends AdminController
         $username = Admin::user()->username;
 
         if($username != 'admin'){
-            $form->select('station_code', __('測站名稱'))->options(Station::all()->pluck('station_name', 'id'))->default($station_id)->readonly();
+            $form->select('station_id', __('測站名稱'))->options(Station::all()->pluck('station_name', 'id'))->default($station_id)->readonly();
         } else {
-            $form->select('station_code', __('測站名稱'))->options(Station::all()->pluck('station_name', 'id'))->default($station_id);
+            $form->select('station_id', __('測站名稱'))->options(Station::all()->pluck('station_name', 'id'))->default($station_id);
         }
         //$form->text('station_code', __('測站名稱'))->$station_code->readonly();
 
