@@ -18,5 +18,8 @@ Route::group([
     $router->resource('sceneries', SceneryController::class);
     $router->resource('scene-images', SceneImageController::class);
     $router->resource('beacons', BeaconController::class);
+    $router->resource('roundviews', RoundviewController::class);
+    $router->resource('floors', FloorController::class);
+    $router->resource('mainpages', MainpagesController::class);
    //$router->apiResource('post', 'api\QueryModellists');
 });
