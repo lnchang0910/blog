@@ -128,5 +128,19 @@ return [
          'activity' => '活動'
       ]
    ],
+   'on_main_page' => '全站首頁顯示',
+   'on_index' => '測站首頁顯示',
+   'area_name' => '地區',
+   'station_code' => '測站代號',
+   'station_name' => '測站',
+   'address' => '地址',
+   'telno' => '電話',
+   'remark' => '備註',
+   'footer' => '網站資訊footer',
+   'order' => '排序',
+   'valid_at' => '有效日期',
+   'mod_user' => '異動人員',
+   'created_at' => '建立時間',
+   'updated_at' => '異動時間',
    'management' => '管理'
 ];

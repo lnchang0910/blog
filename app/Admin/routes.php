@@ -18,5 +18,19 @@ Route::group([
    $router->resource('news', NewsController::class);
    $router->resource('sceneries', SceneryController::class);
    $router->resource('scene-images', SceneImageController::class);
-   //$router->apiResource('post', 'api\QueryModellists');
+   //$router->resource('QueryModelLists',  'api\QueryModelLists');
+   //$router->apiResource('QueryModelLists', 'api\QueryModelLists');
+   $router->apiResource('QueryModelLists', 'api\QueryModelLists');
 });
+
+Route::group([
+   'prefix'        => config('admin.route.prefix'),
+   'namespace'     => config('admin.route.namespace'),
+   //'middleware'    => 'auth:api',
+], function (Router $router) {
+   $router->apiResource('QueryModelLists', 'api\QueryModelLists');
+/*    $router->get('/t', function () {
+      return 'ok';
+   }); */
+});
+

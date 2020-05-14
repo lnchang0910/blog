@@ -413,5 +413,6 @@ return [
             //'filebrowserUploadUrl' => '/ladmin/public/admin/laravel-filemanager/upload?type=Files&_token=',
          ],
       ],
+
    ],
 ];
