@@ -21,5 +21,6 @@ Route::group([
     $router->resource('roundviews', RoundviewController::class);
     $router->resource('floors', FloorController::class);
     $router->resource('mainpages', MainpagesController::class);
+    $router->resource('spots', SpotController::class);
    //$router->apiResource('post', 'api\QueryModellists');
 });
