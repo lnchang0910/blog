@@ -71,14 +71,11 @@ class SceneryController extends AdminController
     {
         $show = new Show(Scenery::findOrFail($id));
 
-        $station_id = Admin::user()->station_id;
-
         $show->field('id', __('Id'));
-        $show->field('station_id', __('測站名稱'))->as(function ($station_code) {
-         return Station::where('id', $station_id)->first()//->station_name ?? null;
+        $show->station_id('測站')->as(function ($station_id) {
+            return Station::where('id', $station_id)->first()->station_name ?? null;
         });
 
-        //$show->field('station_code', __('測站代號'));
         $show->field('scn_id', __('景點編號'));
         $show->field('scn_title', __('標題'));
         $show->field('scn_excerpt', __('景點摘要'))->unescape();
