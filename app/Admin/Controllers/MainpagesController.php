@@ -40,7 +40,7 @@ class MainpagesController extends AdminController
 
         //$grid->column('id', __('Id'));
         $grid->column('title', __('首頁文字'));
-        $grid->column('url', __('圖片超連結'));
+        $grid->column('url', __('連結'))->link();
         $grid->column('order', __('順序'));
         $grid->column('image', __('首頁圖片'))->image('', '50');
         $grid->column('valid_at', __('有效日期'));
@@ -62,7 +62,7 @@ class MainpagesController extends AdminController
 
         $show->field('id', __('Id'));
         $show->field('title', __('首頁文字'));
-        $show->field('url', __('圖片超連結'));
+        $show->field('url', __('連結'))->link();
         $show->field('order', __('順序'));
         $show->field('image', __('首頁圖片'))->image();
         $show->field('valid_at', __('有效日期'));
@@ -85,7 +85,7 @@ class MainpagesController extends AdminController
         $username = Admin::user()->username;
 
         $form->text('title', __('首頁文字'));
-        $form->text('url', __('圖片超連結'));
+        $form->url('url', __('連結'))->placeholder('例：http://www.cwb.gov.tw');
         $form->text('order', __('順序'));
         $form->image('image', __('首頁圖片'))->help('圖片尺寸：2297*1583')->rules('required');
         $form->datetime('valid_at', __('有效日期'))->default(date('Y-m-d H:i:s'));
