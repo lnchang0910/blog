@@ -67,10 +67,9 @@ class FloorController extends AdminController
     protected function detail($id)
     {
         $show = new Show(Floor::findOrFail($id));
-        $station_id = Admin::user()->station_id;
 
         $show->field('id', __('Id'));
-        $show->field('station_id', __('測站名稱'))->as(function ($station_code) {
+        $show->station_id('測站')->as(function ($station_id) {
             return Station::where('id', $station_id)->first()->station_name ?? null;
         });
 
