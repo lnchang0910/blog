@@ -9,7 +9,6 @@ Route::group([
    'namespace'     => config('admin.route.namespace'),
    'middleware'    => config('admin.route.middleware'),
 ], function (Router $router) {
-
    $router->get('/', 'HomeController@index')->name('admin.home');
    $router->resource('areas', AreaController::class);
    $router->resource('stations', StationController::class);
@@ -18,6 +17,10 @@ Route::group([
    $router->resource('news', NewsController::class);
    $router->resource('sceneries', SceneryController::class);
    $router->resource('scene-images', SceneImageController::class);
+   $router->resource('beacons', BeaconController::class);
+   $router->resource('roundviews', RoundviewController::class);
+   $router->resource('floors', FloorController::class);
+   $router->resource('mainpages', MainpagesController::class);
    //$router->resource('QueryModelLists',  'api\QueryModelLists');
    //$router->apiResource('QueryModelLists', 'api\QueryModelLists');
    $router->apiResource('QueryModelLists', 'api\QueryModelLists');
@@ -29,8 +32,7 @@ Route::group([
    //'middleware'    => 'auth:api',
 ], function (Router $router) {
    $router->apiResource('QueryModelLists', 'api\QueryModelLists');
-/*    $router->get('/t', function () {
+   /*    $router->get('/t', function () {
       return 'ok';
    }); */
 });
-
