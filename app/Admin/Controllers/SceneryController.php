@@ -84,10 +84,8 @@ class SceneryController extends AdminController
         $show->field('order', __('排序'));
         $show->field('valid_at', __('有效日期'));
         $show->field('mod_user', __('異動人員'));
-        $show->field('created_at', __('建立時間'));
         $show->field('updated_at', __('異動時間'));
-
-
+        $show->field('created_at', __('建立時間'));
 
         return $show;
     }
