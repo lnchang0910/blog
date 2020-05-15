@@ -9,7 +9,6 @@ Route::group([
    'namespace'     => config('admin.route.namespace'),
    'middleware'    => config('admin.route.middleware'),
 ], function (Router $router) {
-<<<<<<< HEAD
     $router->get('/', 'HomeController@index')->name('admin.home');
     $router->resource('areas', AreaController::class);
     $router->resource('stations', StationController::class);
@@ -24,19 +23,6 @@ Route::group([
     $router->resource('mainpages', MainpagesController::class);
     $router->resource('spots', SpotController::class);
    //$router->apiResource('post', 'api\QueryModellists');
-=======
-   $router->get('/', 'HomeController@index')->name('admin.home');
-   $router->resource('areas', AreaController::class);
-   $router->resource('stations', StationController::class);
-   $router->resource('stations_banner_image', StationBannerImageController::class);
-   $router->resource('stations_view', StationViewController::class);
-   $router->resource('news', NewsController::class);
-   $router->resource('sceneries', SceneryController::class);
-   $router->resource('scene-images', SceneImageController::class);
-   $router->resource('beacons', BeaconController::class);
-   $router->resource('roundviews', RoundviewController::class);
-   $router->resource('floors', FloorController::class);
-   $router->resource('mainpages', MainpagesController::class);
    //$router->resource('QueryModelLists',  'api\QueryModelLists');
    //$router->apiResource('QueryModelLists', 'api\QueryModelLists');
    $router->apiResource('QueryModelLists', 'api\QueryModelLists');
@@ -51,5 +37,5 @@ Route::group([
    /*    $router->get('/t', function () {
       return 'ok';
    }); */
->>>>>>> 0466b6f46abb5e1d4faca9c1b6f3cbd4d84df695
+
 });
