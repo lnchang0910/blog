@@ -22,6 +22,9 @@ Route::group([
     $router->resource('floors', FloorController::class);
     $router->resource('mainpages', MainpagesController::class);
     $router->resource('spots', SpotController::class);
+    $router->resource('traffic', TrafficController::class);
+    $router->resource('pubtrans', PubtransController::class);
+    $router->resource('selfdrives', SelfdriveController::class);
    //$router->apiResource('post', 'api\QueryModellists');
    //$router->resource('QueryModelLists',  'api\QueryModelLists');
    //$router->apiResource('QueryModelLists', 'api\QueryModelLists');
