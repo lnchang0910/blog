@@ -4,12 +4,12 @@ namespace App\Admin\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Admin\Repositories\ModelListsRepository;
-use App\Admin\Models\ModelList;
+use App\Admin\Repositories\AreaModelListsRepository;
+use App\Admin\Models\Area;
 use Illuminate\Support\Facades\Log;
 
 
-class QueryModelLists extends Controller
+class AreaQueryModelLists extends Controller
 {
    protected $modellistRepo;
    /**
@@ -18,22 +18,17 @@ class QueryModelLists extends Controller
     * @return \Illuminate\Http\Response
     */
 
-   public function __construct(ModelListsRepository $modellistRepo)
+   public function __construct(AreaModelListsRepository $modellistRepo)
    {
       $this->modellistRepo = $modellistRepo;
    }
 
    public function index(Request $request)
-   //public function index()
    {
       $arg = $request->get('arg');
-      $arg = 1;
-      $result = $this->modellistRepo->areaName($arg);
-      Log::info('log info');
+      $result = $this->modellistRepo->areaList($arg);
+      Log::info('log info:index');
       return $result;
-      //print_r($result);
-      //var_dump($result);
-      //return $result;
    }
    /*    public function index(Request $request)
    {
@@ -51,14 +46,11 @@ class QueryModelLists extends Controller
     */
    public function store(Request $request)
    {
+      Log::info('log info:store');
       $arg = $request->get('arg');
-      $arg = 2;
-      $result = $this->modellistRepo->areaName($arg);
-      //print_r($result);
-      //var_dump($result);
+      $result = $this->modellistRepo->areaStation($arg);
       return $result;
    }
-
 
    /**
     * Display the specified resource.
@@ -69,14 +61,17 @@ class QueryModelLists extends Controller
 
    public function show(Request $request)
    {
-      $q = $request->get('q');
+      Log::info('log info：show');
+      $arg = $request->get('arg');
       //$result = $this->modellistRepo->find($q);
-      $result = $this->modellistRepo->areaName($q);
+      $result = $this->modellistRepo->areaStation($arg);
 
+      /*
       if (!$result) {
          return response()->json(['status' => 1, 'message' => 'Data not found'], 404);
       }
       return response()->json(['status' => 0, 'lotnum' => $result]);
+      */
    }
 
    /**
