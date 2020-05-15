@@ -4,13 +4,12 @@ namespace App\Admin\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Repositories\ModellistsRepository;
-use Illuminate\Support\Facades\DB;
-use App\Modellist;
+use App\Admin\Repositories\ModelListsRepository;
+use App\Admin\Models\ModelList;
 use Illuminate\Support\Facades\Log;
 
 
-class QueryModellists extends Controller
+class QueryModelLists extends Controller
 {
    protected $modellistRepo;
    /**
@@ -19,18 +18,30 @@ class QueryModellists extends Controller
     * @return \Illuminate\Http\Response
     */
 
-   public function __construct(ModellistsRepository $modellistRepo)
+   public function __construct(ModelListsRepository $modellistRepo)
    {
       $this->modellistRepo = $modellistRepo;
    }
 
    public function index(Request $request)
+   //public function index()
+   {
+      $arg = $request->get('arg');
+      $arg = 1;
+      $result = $this->modellistRepo->areaName($arg);
+      Log::info('log info');
+      return $result;
+      //print_r($result);
+      //var_dump($result);
+      //return $result;
+   }
+   /*    public function index(Request $request)
    {
       //return response()->json(['status' => 0, 'posts' => $this->modellistRepo->index()]);
       $q = $request->get('q');
-      $rtn = Modellist::where('spec', $q)->pluck('lotnum');
+      $rtn = ModelList::where('spec', $q)->pluck('lotnum');
       return $rtn;
-   }
+   } */
 
    /**
     * Store a newly created resource in storage.
@@ -40,7 +51,12 @@ class QueryModellists extends Controller
     */
    public function store(Request $request)
    {
-      //
+      $arg = $request->get('arg');
+      $arg = 2;
+      $result = $this->modellistRepo->areaName($arg);
+      //print_r($result);
+      //var_dump($result);
+      return $result;
    }
 
 
@@ -54,11 +70,13 @@ class QueryModellists extends Controller
    public function show(Request $request)
    {
       $q = $request->get('q');
-      $modellist = $this->modellistRepo->find($q);
-      if (!$modellist) {
+      //$result = $this->modellistRepo->find($q);
+      $result = $this->modellistRepo->areaName($q);
+
+      if (!$result) {
          return response()->json(['status' => 1, 'message' => 'Data not found'], 404);
       }
-      return response()->json(['status' => 0, 'lotnum' => $modellist]);
+      return response()->json(['status' => 0, 'lotnum' => $result]);
    }
 
    /**

@@ -40,14 +40,14 @@ class StationController extends AdminController
       $grid = new Grid(new Station());
 
       $grid->column('id', __('Id'));
-      $grid->column('area.area_name', __('地區'));
-      $grid->column('station_code', __('測站代號'));
-      $grid->column('station_name', __('測站'));
-      $grid->column('telno', __('電話'));
-      $grid->column('order', __('排序'));
-      $grid->column('valid_at', __('有效日期'));
-      $grid->column('mod_user', __('異動人員'));
-      $grid->column('updated_at', __('異動時間'));
+      $grid->column('area.area_name', __(trans('admin.area_name')));
+      $grid->column('station_code', __(trans('admin.station_code')));
+      $grid->column('station_name', __(trans('admin.station_name')));
+      $grid->column('telno', __(trans('admin.telno')));
+      $grid->column('order', __(trans('admin.order')));
+      $grid->column('valid_at', __(trans('admin.valid_at')));
+      $grid->column('mod_user', __(trans('admin.mod_user')));
+      $grid->column('updated_at', __(trans('admin.updated_at')));
 
       return $grid;
    }
@@ -65,21 +65,21 @@ class StationController extends AdminController
       $show->field('id', __('Id'));
 
       //ref https://github.com/z-song/laravel-admin/issues/3107
-      $show->area_id('地區名稱')->as(function ($area_id) {
+      $show->area_id(trans('admin.area_name'))->as(function ($area_id) {
          return Area::where('id', $area_id)->first()->area_name ?? null;
       });
 
-      $show->field('station_code', __('測站代號'));
-      $show->field('station_name', __('測站名稱'));
-      $show->field('address', __('地址'));
-      $show->field('telno', __('電話'));
-      $show->field('remark', __('備註'));
-      $show->field('footer', __('網站資訊footer'))->unescape();
-      $show->field('order', __('排序'));
-      $show->field('valid_at', __('有效日期'));
-      $show->field('mod_user', __('異動人員'));
-      $show->field('created_at', __('建立時間'));
-      $show->field('updated_at', __('異動時間'));
+      $show->field('station_code', __(trans('admin.station_code')));
+      $show->field('station_name', __(trans('admin.station_name')));
+      $show->field('address', __(trans('admin.address')));
+      $show->field('telno', __(trans('admin.telno')));
+      $show->field('remark', __(trans('admin.remark')));
+      $show->field('footer', __(trans('admin.footer')))->unescape();
+      $show->field('order', __(trans('admin.order')));
+      $show->field('valid_at', __(trans('admin.valid_at')));
+      $show->field('mod_user', __(trans('admin.mod_user')));
+      $show->field('created_at', __(trans('admin.created_at')));
+      $show->field('updated_at', __(trans('admin.updated_at')));
 
       return $show;
    }
@@ -93,16 +93,16 @@ class StationController extends AdminController
    {
       $form = new Form(new Station());
 
-      $form->select('area_id', __('地區名稱'))->options(Area::all()->pluck('area_name', 'id'))->rules('required');
-      $form->text('station_code', __('測站代號'))->rules('required|max:4');
-      $form->text('station_name', __('測站名稱'))->rules('required|max:40');
-      $form->text('address', __('地址'));
-      $form->text('telno', __('電話'));
-      $form->ckeditor('footer', __('網站資訊footer'));
-      $form->text('order', __('排序'));
-      $form->datetime('valid_at', __('有效日期'))->default(date('Y-m-d H:i:s'));
-      $form->textarea('remark', __('備註'));
-      $form->text('mod_user', __('異動人員'))->default(Admin::user()->name)->readonly();
+      $form->select('area_id', __(trans('admin.area_name')))->options(Area::all()->pluck('area_name', 'id'))->rules('required');
+      $form->text('station_code', __(trans('admin.station_code')))->rules('required|max:4');
+      $form->text('station_name', __(trans('admin.station_name')))->rules('required|max:40');
+      $form->text('address', __(trans('admin.address')));
+      $form->text('telno', __(trans('admin.telno')));
+      $form->ckeditor('footer', __(trans('admin.footer')));
+      $form->text('order', __(trans('admin.order')));
+      $form->datetime('valid_at', __(trans('admin.valid_at')))->default(date('Y-m-d H:i:s'));
+      $form->textarea('remark', __(trans('admin.remark')));
+      $form->text('mod_user', __(trans('admin.mod_user')))->default(Admin::user()->name)->readonly();
       $form->saving(function (Form $form) {
          $form->mod_user = Admin::user()->name;
       });
