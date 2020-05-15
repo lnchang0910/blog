@@ -27,11 +27,11 @@ Route::group([
 });
 
 Route::group([
-   'prefix'        => config('admin.route.prefix'),
+   //'prefix'        => config('admin.route.prefix'),
    'namespace'     => config('admin.route.namespace'),
    //'middleware'    => 'auth:api',
 ], function (Router $router) {
-   $router->apiResource('QueryModelLists', 'api\QueryModelLists');
+   $router->apiResource('AreaLists', 'api\AreaQueryModelLists');
    /*    $router->get('/t', function () {
       return 'ok';
    }); */
